@@ -1,9 +1,6 @@
 import React, {useState} from 'react'
-import ReactMarkdown from 'react-markdown'
-
-export default function Profile({profile, linkedinUrl,githubUrl,twitterUrl}) {
+export default function Profile({profile, linkedinUrl, githubUrl, twitterUrl}) {
     return (
-
 
         <div class="col-lg-4 col-sm-6 col-12">
             <div class="card card-4 card-5 text-center---">

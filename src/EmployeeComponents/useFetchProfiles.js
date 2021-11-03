@@ -8,8 +8,8 @@ const ACTIONS = {
     UPDATE_HAS_NEXT_PAGE: 'update-has-next-page'
 }
 
-//const BASE_URL = 'http://localhost:3004/profiles'
-const BASE_URL = 'https://ancient-refuge-63740.herokuapp.com/profiles';
+ //const BASE_URL = 'http://localhost:3000/profiles'
+ const BASE_URL = 'https://ancient-refuge-63740.herokuapp.com/profiles';
 
 function reducer(state, action) {
     switch (action.type) {
@@ -20,7 +20,11 @@ function reducer(state, action) {
         case ACTIONS.ERROR:
             return {...state, loading: false, error: action.payload.error, profiles: []}
         case ACTIONS.UPDATE_HAS_NEXT_PAGE:
-            return {...state, hasNextPage: action.payload.hasNextPage,totalItemsReturned: action.payload.totalItemsReturned}
+            return {
+                ...state,
+                hasNextPage: action.payload.hasNextPage,
+                totalItemsReturned: action.payload.totalItemsReturned
+            }
         default:
             return state
     }
@@ -48,7 +52,10 @@ export default function useFetchProfiles(params, page) {
             cancelToken: cancelToken2.token,
             params: {_page: page + 1, ...params}
         }).then(res => {
-            dispatch({type: ACTIONS.UPDATE_HAS_NEXT_PAGE, payload: {hasNextPage: res.data.length !== 0,totalItemsReturned:res.data.length}})
+            dispatch({
+                type: ACTIONS.UPDATE_HAS_NEXT_PAGE,
+                payload: {hasNextPage: res.data.length !== 0, totalItemsReturned: res.data.length}
+            })
         }).catch(e => {
             if (axios.isCancel(e)) return
             dispatch({type: ACTIONS.ERROR, payload: {error: e}})

@@ -30,6 +30,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="submit"],
+input[type="search"],
 textarea {
   background-color: #fff;
   border: 2px solid;
@@ -163,7 +164,7 @@ button:not(:disabled) {
 .search-bar form {
   position: relative;
 }
-.search-bar input[type="text"] {
+.search-bar input[type="search"] {
   margin-bottom: 0;
   padding-right: 65px;
   padding-left: 20px;
